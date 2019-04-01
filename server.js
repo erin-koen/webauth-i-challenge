@@ -9,7 +9,7 @@ const usersRoute = require('./Data/Routes/usersRoute.js')
 // declare server
 const server = express();
 
-//f ire up global middleware
+//fire up global middleware
 server.use(helmet());
 server.use(express.json());
 server.use(cors());

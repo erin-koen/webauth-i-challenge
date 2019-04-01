@@ -11,10 +11,12 @@ const createFakeUser = () => ({
 
 exports.seed = async function(knex, Promise) {
   const fakeUsers = [];
+  
   // creating an arbitrary number of fake users
   for (let i = 0; i < 100; i++) {
     fakeUsers.push(createFakeUser());
   }
+
   // using fs to push a json file of all users to the root directory, so that you know what their passwords are prior to hashing.
   fs.writeFileSync("./authTestInfo.json", JSON.stringify({ users: fakeUsers }));
 
