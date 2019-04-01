@@ -7,17 +7,18 @@ module.exports = {
   findUserByName
 };
 
-function findUserByID(id) {
-  return db("users").where({ id });
-}
 
 function findUserByName(name) {
   return db("users").where({ username: name });
 }
+
+function findUserByID(id){
+    return db("users").where({ id:id })
+}
 // should you do the hashing at the helper level? Or on the route? Seems like the simpler you make this, the better. Hmmm.
 async function createUser(user) {
-  const [username] = await db("users").insert(user);
-  return findUserByName(username);
+  const [id] = await db("users").insert(user);
+  return findUserByID(id);
 }
 
 async function getUsers(user) {}
