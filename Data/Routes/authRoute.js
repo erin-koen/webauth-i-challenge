@@ -8,8 +8,8 @@ router.post("/login", (req, res) => {
   //desctructure the things you need off req.body
   let { username, password } = req.body;
   //pass username to db find method to confirm it exists
-  console.log(username);
-  Users.findUserByFilter({ username })// why does this need to be destructured?
+
+  Users.findUserByFilter({ username }) // why does this need to be destructured?
     //take the first result
     .first()
     //check that result's password's hash against the hash of the one that was entered in the req, also that the user exists
@@ -46,4 +46,23 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.status(500).send("There was an error with the serer that prevented your logout.");
+      } else {
+        res
+          .status(200)
+          .send(
+            "Thanks for visiting. Peace out."
+          );
+      }
+    });
+  } else {
+    res.status(200).send("Message 2. Thanks for visiting. Peace out.")
+  }
+});
+
 module.exports = router;
+ 
