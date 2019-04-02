@@ -3,12 +3,12 @@ const db = require("../dbConfig.js");
 module.exports = {
   createUser,
   getUsers,
-  findUserByName
+  findUserByFilter,
+  findUserByID
 };
 
-async function findUserByName(name) {
-  const user = await db("users").where({ username: name })
-  return user
+function findUserByFilter(filter) {
+  return db("users").where(filter);
 }
 
 function findUserByID(id) {
@@ -20,8 +20,8 @@ async function createUser(user) {
   return findUserByID(id);
 }
 
-async function getUsers() {
-  return await db("users").select(
+function getUsers() {
+  return db("users").select(
     "id",
     "first_name",
     "last_name",
