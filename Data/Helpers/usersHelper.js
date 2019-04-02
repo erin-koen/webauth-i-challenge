@@ -1,5 +1,4 @@
 const db = require("../dbConfig.js");
-const bcrypt = require("bcryptjs");
 
 module.exports = {
   createUser,
@@ -7,13 +6,12 @@ module.exports = {
   findUserByName
 };
 
-
 function findUserByName(name) {
   return db("users").where({ username: name });
 }
 
-function findUserByID(id){
-    return db("users").where({ id:id })
+function findUserByID(id) {
+  return db("users").where({ id: id });
 }
 // should you do the hashing at the helper level? Or on the route? Seems like the simpler you make this, the better. Hmmm.
 async function createUser(user) {
@@ -21,4 +19,12 @@ async function createUser(user) {
   return findUserByID(id);
 }
 
-async function getUsers(user) {}
+async function getUsers() {
+  return await db("users").select(
+    "id",
+    "first_name",
+    "last_name",
+    "username",
+    "password"
+  );
+}
