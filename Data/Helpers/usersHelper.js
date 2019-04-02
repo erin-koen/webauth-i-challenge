@@ -6,8 +6,9 @@ module.exports = {
   findUserByName
 };
 
-function findUserByName(name) {
-  return db("users").where({ username: name });
+async function findUserByName(name) {
+  const user = await db("users").where({ username: name })
+  return user
 }
 
 function findUserByID(id) {
