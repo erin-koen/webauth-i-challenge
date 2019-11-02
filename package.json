@@ -18,7 +18,7 @@
     "faker": "^4.1.0",
     "fs": "^0.0.1-security",
     "helmet": "^3.16.0",
-    "knex": "^0.16.3",
+    "knex": "^0.19.5",
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {
